@@ -1,7 +1,8 @@
 from socket import *
+import requests
 import base64
 
-msg = "\r\n I love computer networks!"
+msg = "\r\n Sent by Python"
 endmsg = "\r\n.\r\n"
 
 # Choose a mail server (e.g. Google mail server) and call it mailserver
@@ -29,7 +30,7 @@ if recvHelo[:3] != '250':
     print('250 reply not received from server.')
 
 
-ehloCommand = 'EHLO ****\r\n'
+ehloCommand = 'EHLO ***\r\n'
 clientSocket.send(ehloCommand.encode())
 recvEhlo = clientSocket.recv(1024).decode()
 print(recvEhlo)
@@ -39,12 +40,12 @@ clientSocket.send(authCommand.encode())
 recvAuth = clientSocket.recv(1024).decode()
 print(base64.b64decode(recvAuth[3:]))
 
-username = '****\r\n'
+username = '***\r\n'
 clientSocket.send(username.encode())
 recvUsr = clientSocket.recv(1024).decode()
 print(base64.b64decode(recvUsr[3:]))
 
-password = '****\r\n'
+password = '***\r\n'
 clientSocket.send(password.encode())
 recvPwd = clientSocket.recv(1024).decode()
 print(recvPwd)
@@ -52,7 +53,7 @@ print(recvPwd)
 # <503 Error: need EHLO and AUTH first !>
 # Send MAIL FROM command and print server response.
 # Fill in start
-fromCommand = 'MAIL FROM: ****\r\n'
+fromCommand = 'MAIL FROM: <***>\r\n'
 clientSocket.send(fromCommand.encode())
 recvFrom = clientSocket.recv(1024).decode()
 print(recvFrom)
@@ -62,7 +63,7 @@ if recvFrom[:3] != '250':
 
 # Send RCPT TO command and print server response.
 # Fill in start
-toCommand = 'RCPT TO: ****\r\n'
+toCommand = 'RCPT TO: <***>\r\n'
 clientSocket.send(toCommand.encode())
 recvTo = clientSocket.recv(1024).decode()
 print(recvTo)
